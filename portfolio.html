@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr Deepak</title>
+  <link rel="icon" type="image/png"
+    href="https://raw.githubusercontent.com/ILoveTalk/ILoveTalk/refs/heads/main/profile-circle.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Roboto+Mono:wght@700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    :root {
+      --primary-glow: #00f6ff;
+      --secondary-glow: #08ffc8;
+      --background-dark: #010409;
+      --text-color: #e6edf3;
+      --border-color: rgba(0, 246, 255, 0.2);
+    }
+
+    html,
+    body {
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE 10+ */
+      overflow-x: hidden;
+      /* Prevent horizontal scroll */
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      display: none;
+      /* Safari and Chrome */
+    }
+
+    body {
+      font-family: 'Fira Code', monospace;
+      background-color: var(--background-dark);
+      color: var(--text-color);
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewport="0 0 100 100" style="fill:white;"><rect x="9" y="0" width="2" height="20"/><rect x="0" y="9" width="20" height="2"/></svg>') 10 10, auto;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Roboto Mono', monospace;
+      text-shadow: 0 0 5px var(--primary-glow);
+    }
+
+    #matrix-bg {
+      opacity: 0.6;
+    }
+
+    .scanline-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.2));
+      background-size: 100% 4px;
+      animation: scan 10s linear infinite;
+    }
+
+    @keyframes scan {
+      from {
+        background-position-y: 0;
+      }
+
+      to {
+        background-position-y: 200px;
+      }
+    }
+
+    .glowing-border {
+      border: 1px solid var(--border-color);
+      box-shadow: 0 0 15px rgba(0, 246, 255, 0.1), inset 0 0 10px rgba(0, 246, 255, 0.05);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .custom-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Preloader Styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--background-dark);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-text {
+      color: var(--primary-glow);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1rem;
+      text-shadow: 0 0 8px var(--primary-glow);
+    }
+
+    .loader-text::after {
+      content: '_';
+      animation: blink 1s step-start infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+  </style>
+  <script type="importmap">
+      { "imports": { "react": "https://esm.sh/react@18.2.0", "react-dom/client": "https://esm.sh/react-dom@18.2.0/client", "framer-motion": "https://esm.sh/framer-motion@11.3.12?deps=react@18.2.0" } }
+    </script>
+</head>
+
+<body oncontextmenu="return false;">
+  <div id="preloader">
+    <p class="loader-text">&gt; Initializing System...</p>
+  </div>
+
+  <div class="scanline-overlay"></div>
+  <canvas id="matrix-bg" class="fixed top-0 left-0 w-full h-full z-[-1]"></canvas>
+  <div id="root"></div>
+
+  <script type="text/babel" data-type="module">
+    import React, { useState, useEffect, useRef, useMemo } from 'react';
+    import ReactDOM from 'react-dom/client';
+    import { motion, AnimatePresence, useInView } from 'framer-motion';
+
+    // --- CONSTANTS ---
+    const PROJECTS_API_URL = 'https://raw.githubusercontent.com/ILoveTalk/ILoveTalk/refs/heads/main/data.json';
+    const PROJECTS_PER_PAGE = 6;
+    const SKILLS = ['C', 'C++', 'Python', 'HTML', 'CSS', 'JavaScript', 'Dart', 'Shell Scripting', 'AI Integration', 'Automation'];
+    const SOCIAL_LINKS = { github: 'https://github.com/ILoveTalk', linkedin: 'https://www.linkedin.com/in/mr-deepak-679b0337b/', youtube: 'https://www.youtube.com/@ILoveTalk', instagram: 'https://www.instagram.com/ilovetalk/' };
+    const SERVICES = [{ icon: 'fas fa-brain', title: 'AI & Automation Tooling', description: 'Creating custom tools and scripts with AI to automate tasks, boost productivity, and generate passive income streams.' }, { icon: 'fas fa-terminal', title: 'Web & App Development', description: 'Building functional and user-friendly websites and applications from scratch using core programming languages.' }, { icon: 'fas fa-microphone-alt', title: 'Tech Education & Content', description: 'Breaking down complex topics like Technology, AI, and Finance into simple, easy-to-understand oral content.' }, { icon: 'fas fa-lightbulb', title: 'Idea Prototyping', description: 'Turning innovative ideas into tangible prototypes and proof-of-concepts to test their viability and potential.' }];
+    const STATS = [{ label: 'Continuous Learning', value: 'AI Automation' }, { label: 'Building Tools', value: 'Problem Solving' }, { label: 'Financial Growth', value: 'Passive Income' }, { label: 'Sharing Knowledge', value: 'Effective Communication' }];
+    const ABOUT_TEXT = "My name is Deepak, and I am driven by the power of conversation and technology. I specialize in breaking down complex topics—from AI trends to financial growth—into simple, actionable advice. My core passion lies in using AI and automation to create tools that simplify work, accelerate learning, and unlock opportunities for passive income. I believe in building systems that help us learn and grow, one conversation and one line of code at a time.";
+
+    // --- HOOKS ---
+    const useTypingEffect = (text, duration = 50, startDelay = 500) => { const [typedText, setTypedText] = useState(''); useEffect(() => { if (!text) { setTypedText(''); return; } let timeoutId; let intervalId; setTypedText(''); timeoutId = setTimeout(() => { let currentIndex = 0; intervalId = setInterval(() => { if (currentIndex < text.length) { setTypedText(text.substring(0, currentIndex + 1)); currentIndex++; } else { clearInterval(intervalId); } }, duration); }, startDelay); return () => { clearTimeout(timeoutId); clearInterval(intervalId); }; }, [text, duration, startDelay]); return typedText; };
+    const useDecryptEffect = (text) => { const [decryptedText, setDecryptedText] = useState(''); const ref = useRef(null); const isInView = useInView(ref, { once: true, margin: '-100px 0px' }); const chars = '!<>-_\\/[]{}—=+*^?#________'; useEffect(() => { let frameRequest; if (isInView && text.length > 0) { let counter = 0; const update = () => { let output = ''; let complete = 0; for (let i = 0; i < text.length; i++) { const from = text[i]; const start = Math.floor(Math.random() * 40); const end = start + Math.floor(Math.random() * 40); if (counter >= end) { complete++; output += from; } else if (counter >= start) { const charCode = Math.floor(Math.random() * chars.length); output += `<span class="text-cyan-400">${chars[charCode]}</span>`; } else { output += ' '; } } setDecryptedText(output); if (complete !== text.length) { frameRequest = requestAnimationFrame(update); counter++; } }; frameRequest = requestAnimationFrame(update); } return () => { if (frameRequest) cancelAnimationFrame(frameRequest); }; }, [text, isInView]); return { ref, decryptedText }; };
+
+    // --- COMPONENTS ---
+    const AsciiImage = ({ src, alt }) => { const [ascii, setAscii] = useState(''); const [isRevealed, setIsRevealed] = useState(false); const DENSITY = 'Ñ@#W$9876543210?!abc;:+=-,._ '; const imageVariants = { initial: { opacity: 0, scale: 1.0 }, revealed: { opacity: 1, scale: 1.0 }, }; const asciiVariants = { initial: { opacity: 1 }, revealed: { opacity: 0 }, }; useEffect(() => { if (!src) return; const canvas = document.createElement('canvas'); const ctx = canvas.getContext('2d', { willReadFrequently: true }); if (!ctx) return; const img = new Image(); img.crossOrigin = "Anonymous"; img.src = src; img.onload = () => { const aspectRatio = img.height / img.width; const width = 100; const height = Math.floor(width * aspectRatio * 0.5); canvas.width = width; canvas.height = height; ctx.drawImage(img, 0, 0, width, height); const imageData = ctx.getImageData(0, 0, width, height); let asciiStr = ''; for (let i = 0; i < imageData.data.length; i += 4) { const r = imageData.data[i], g = imageData.data[i + 1], b = imageData.data[i + 2]; const brightness = (0.299 * r + 0.587 * g + 0.114 * b) / 255; const charIndex = Math.floor(brightness * (DENSITY.length - 1)); asciiStr += DENSITY[charIndex]; if ((i / 4 + 1) % width === 0) asciiStr += '\n'; } setAscii(asciiStr); }; }, [src]); return (<motion.div className="relative w-64 h-64 sm:w-80 sm:h-80 cursor-pointer rounded-full overflow-hidden border-4 border-cyan-500/50 shadow-2xl shadow-cyan-500/20" onHoverStart={() => setIsRevealed(true)} onHoverEnd={() => setIsRevealed(false)} onTap={() => setIsRevealed(prev => !prev)} style={{ transformStyle: "preserve-3d" }} aria-label="Toggle image display"> <motion.pre className="absolute inset-0 flex items-center justify-center text-[5px] sm:text-[6px] leading-[1.1em] font-mono text-cyan-400 z-10" style={{ transform: "translateZ(40px)" }} variants={asciiVariants} animate={isRevealed ? "revealed" : "initial"} transition={{ duration: 0.5 }} aria-hidden={isRevealed}>{ascii}</motion.pre> <motion.img src={src} alt={alt} className="absolute inset-0 z-20 w-full h-full object-cover" style={{ transform: "translateZ(80px)" }} variants={imageVariants} animate={isRevealed ? "revealed" : "initial"} transition={{ type: 'spring', stiffness: 300, damping: 20 }} /> </motion.div>); };
+    const ProjectCard = React.memo(({ project, onExecute }) => { const { title, tags, imageUrl } = project; const cardVariants = { hidden: { y: 50, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } } }; return (<motion.div variants={cardVariants} className="relative w-full max-w-[350px] sm:w-[350px] flex-shrink-0"> <div style={{ transformStyle: "preserve-3d" }} className="bg-black/40 backdrop-blur-sm rounded-lg overflow-hidden group transition-all duration-300 shadow-lg hover:shadow-cyan-500/30 glowing-border p-6 h-full flex flex-col"> <div className="relative overflow-hidden rounded-md mb-4 border border-gray-700 aspect-[3/2]"> <img loading="lazy" src={imageUrl} alt={title} className="w-full h-full object-cover" /> <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div> </div> <div className="flex flex-col flex-grow"> <h3 className="text-xl font-bold text-white mb-2 truncate">{title}</h3> <div className="flex flex-wrap gap-2 mb-4">{tags.map((tag) => (<span key={tag} className="bg-cyan-900/50 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">{tag}</span>))}</div> <button onClick={onExecute} className="w-full text-center bg-cyan-500/10 border border-cyan-500 text-cyan-400 font-bold py-2 px-4 rounded-md hover:bg-cyan-500/20 transition-all duration-300 transform shadow-md shadow-cyan-500/10 mt-auto">./view_concept</button> </div> </div> </motion.div>); });
+    const ProjectModal = ({ project, onClose }) => { const { title, iframeUrl } = project; const [isIframeLoading, setIsIframeLoading] = useState(true); const modalRef = useRef(null); useEffect(() => { const element = modalRef.current; if (element) { element.requestFullscreen().catch(err => { console.warn(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`); }); } const handleFullscreenChange = () => { if (!document.fullscreenElement) { onClose(); } }; document.addEventListener('fullscreenchange', handleFullscreenChange); return () => { document.removeEventListener('fullscreenchange', handleFullscreenChange); if (document.fullscreenElement) { document.exitFullscreen().catch(err => console.warn(err)); } }; }, [onClose]); const backdropVariants = { hidden: { opacity: 0 }, visible: { opacity: 1 } }; const modalVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.3 } }, exit: { opacity: 0, transition: { duration: 0.3 } } }; return (<motion.div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center" variants={backdropVariants} initial="hidden" animate="visible" exit="hidden"> <motion.div ref={modalRef} className="w-full h-full bg-[var(--background-dark)] font-mono flex flex-col overflow-hidden" variants={modalVariants} onClick={(e) => e.stopPropagation()}> <div className="bg-gray-800/50 p-3 flex items-center justify-between flex-shrink-0 border-b border-cyan-500/20"> <div className="flex items-center"> <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div> <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div> <div className="w-3 h-3 rounded-full bg-green-500"></div> </div> <p className="text-sm text-gray-400 truncate px-4">/concepts/{title.toLowerCase().replace(/ /g, '_')}</p> <button onClick={onClose} className="text-gray-400 hover:text-white text-2xl leading-none" aria-label="Close modal">&times;</button> </div> <div className="flex-grow relative"> {isIframeLoading && (<div className="absolute inset-0 flex items-center justify-center bg-[var(--background-dark)] z-10"> <p className="text-cyan-400 font-mono animate-pulse text-lg">&gt; Loading concept...</p> </div>)} <iframe src={iframeUrl} className={`w-full h-full border-0 transition-opacity duration-500 ${isIframeLoading ? 'opacity-0' : 'opacity-100'}`} title={title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen onLoad={() => setIsIframeLoading(false)}></iframe> </div> </motion.div> </motion.div>); };
+    const MobileNav = ({ navLinks, isOpen, setIsOpen }) => { const menuVariants = { closed: { opacity: 0, y: "-100%" }, open: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 120, damping: 20 } } }; const linkVariants = { closed: { opacity: 0, y: 20 }, open: { opacity: 1, y: 0 } }; return (<AnimatePresence> {isOpen && (<motion.div className="lg:hidden fixed inset-0 bg-black/80 backdrop-blur-lg z-40 flex flex-col items-center justify-center space-y-8" variants={menuVariants} initial="closed" animate="open" exit="closed"> {navLinks.map((link, i) => (<motion.a key={link.href} href={link.href} className="text-gray-300 text-2xl font-bold transition-colors duration-300" onClick={() => setIsOpen(false)} variants={linkVariants} initial="closed" animate="open" transition={{ delay: 0.1 * (i + 1) }}> <span className="text-cyan-400">$</span> {link.label} </motion.a>))} </motion.div>)} </AnimatePresence>); };
+    const Header = () => { const [isOpen, setIsOpen] = useState(false); const navLinks = [{ href: '#about', label: 'cat ./about.md' }, { href: '#services', label: 'ls ./services' }, { href: '#projects', label: 'ls ./concepts' }, { href: '#contact', label: 'mail -s "Inquiry"' },]; const linkVariants = { hover: { scale: 1.1, color: 'var(--primary-glow)', textShadow: '0 0 8px var(--primary-glow)', originX: 0, }, tap: { scale: 0.95 }, }; const hamburgerVariants = { open: { rotate: 180, }, closed: { rotate: 0, }, }; const pathVariants = { open: (i) => ({ d: i === 0 ? "M 3 16.5 L 17 2.5" : "M 3 2.5 L 17 16.5" }), closed: (i) => ({ d: i === 0 ? "M 2 5 L 20 5" : "M 2 15 L 20 15" }) }; return (<> <motion.header initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5, ease: 'easeOut' }} className="bg-black/30 backdrop-blur-md sticky top-0 z-50 glowing-border border-b"> <div className="container mx-auto px-6 md:px-12 py-3 flex justify-between items-center"> <motion.a href="#" className="text-2xl font-bold text-white transition-colors duration-300" style={{ textShadow: '0 0 8px rgba(0, 246, 255, 0.5)' }} whileHover={{ color: 'var(--primary-glow)', textShadow: '0 0 10px var(--primary-glow)' }} aria-label="Homepage"> <span className="text-cyan-400">&gt;</span>ILoveTalk<span className="opacity-50 animate-ping">_</span> </motion.a> <nav className="hidden lg:flex space-x-6 items-center"> {navLinks.map((link) => (<motion.a key={link.href} href={link.href} className="text-gray-300 transition-colors duration-300 text-sm" variants={linkVariants} whileHover="hover" whileTap="tap"> <span className="text-cyan-400">$</span> {link.label} </motion.a>))} </nav> <div className="lg:hidden z-50"> <motion.button onClick={() => setIsOpen(!isOpen)} className="focus:outline-none" aria-label="Toggle menu" animate={isOpen ? "open" : "closed"} variants={hamburgerVariants}> <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"> <motion.path stroke="var(--primary-glow)" strokeWidth="2" strokeLinecap="round" custom={0} variants={pathVariants} /> <motion.path stroke="var(--primary-glow)" strokeWidth="2" strokeLinecap="round" custom={1} variants={pathVariants} /> </svg> </motion.button> </div> </div> </motion.header> <MobileNav navLinks={navLinks} isOpen={isOpen} setIsOpen={setIsOpen} /> </>); };
+    const Hero = () => { const fullText = "AI-Powered Creator && Automation Architect"; const typedText = useTypingEffect(fullText, 100); const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.3 } } }; const itemVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } } }; return ( <section id="home" className="py-20 md:py-24 min-h-[calc(100vh-80px)] flex items-center"> <motion.div className="grid md:grid-cols-2 gap-10 items-center" variants={containerVariants} initial="hidden" animate="visible"> <div className="text-center md:text-left"> <motion.h2 variants={itemVariants} className="text-lg text-cyan-400 font-semibold">&gt; Hi, I'm Mr Deepak</motion.h2> <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-2 mb-4 leading-tight">{typedText}<span className="animate-ping">|</span></motion.h1> <motion.p variants={itemVariants} className="text-gray-400 text-base sm:text-lg mb-8">&gt; I build intelligent tools and automated systems to solve complex problems, accelerate learning, and create new possibilities.</motion.p> <motion.div variants={itemVariants} className="flex justify-center md:justify-start space-x-6 mb-8"> <motion.a whileHover={{ scale: 1.2, color: 'var(--primary-glow)' }} href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 transition-colors duration-300 text-3xl" aria-label="GitHub"><i className="fab fa-github"></i></motion.a> <motion.a whileHover={{ scale: 1.2, color: 'var(--primary-glow)' }} href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 transition-colors duration-300 text-3xl" aria-label="LinkedIn"><i className="fab fa-linkedin"></i></motion.a> <motion.a whileHover={{ scale: 1.2, color: 'var(--primary-glow)' }} href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="text-gray-400 transition-colors duration-300 text-3xl" aria-label="YouTube"><i className="fab fa-youtube"></i></motion.a> <motion.a whileHover={{ scale: 1.2, color: 'var(--primary-glow)' }} href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 transition-colors duration-300 text-3xl" aria-label="Instagram"><i className="fab fa-instagram"></i></motion.a> </motion.div> <motion.div variants={itemVariants}> <motion.a href="#contact" className="bg-cyan-500/10 border border-cyan-500 text-cyan-400 font-bold py-3 px-8 rounded-md hover:bg-cyan-500/20 transition-all duration-300 transform inline-block shadow-lg shadow-cyan-500/20" whileHover={{ scale: 1.05, y: -2, boxShadow: '0 0 20px rgba(0, 246, 255, 0.5)' }} whileTap={{ scale: 0.95 }}>initiate_contact()</motion.a> </motion.div> </div> <motion.div className="relative flex justify-center items-center mt-10 md:mt-0 h-96" variants={itemVariants}> <AsciiImage src="https://raw.githubusercontent.com/ILoveTalk/ILoveTalk/refs/heads/main/profile-circle.png" alt="Mr Deepak (ILoveTalk)"/> </motion.div> </motion.div> </section> ); };
+    const SkillsCloud = () => { return (<div className="relative w-full h-full flex items-center justify-center overflow-hidden p-4"> <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4"> {SKILLS.map((skill, index) => { const isLarge = index % 4 === 0; return (<motion.div key={skill} whileHover={{ scale: 1.1, color: '#00f6ff', boxShadow: '0 0 15px rgba(0, 246, 255, 0.5)' }} className={`whitespace-nowrap glowing-border text-xs sm:text-sm md:text-base cursor-pointer rounded-full py-2 px-4 sm:px-5 bg-black/40 backdrop-blur-sm ${isLarge ? 'text-cyan-300 font-bold' : 'text-gray-300'}`}> {skill} </motion.div>); })} </div> </div>); };
+    const About = () => { const { ref, decryptedText } = useDecryptEffect(ABOUT_TEXT); const sectionVariants = { hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } }; return (<motion.section id="about" className="py-20" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}> <h2 className="text-3xl font-bold text-center text-white mb-2">// About Me</h2> <div className="w-20 h-1 bg-cyan-400 mx-auto mb-12"></div> <div className="grid lg:grid-cols-2 gap-16 items-center"> <div className="max-w-xl mx-auto text-left"> <p ref={ref} className="text-gray-400 text-base sm:text-lg mb-10 leading-relaxed font-mono min-h-[240px]" dangerouslySetInnerHTML={{ __html: decryptedText }} /> </div> <div className="w-full h-80 sm:h-96"> <h3 className="text-2xl font-semibold text-white mb-6 text-center">./run skill_visualizer</h3> <SkillsCloud /> </div> </div> </motion.section>); };
+    const StatItem = React.memo(({ label, value }) => { return (<div className="bg-black/40 backdrop-blur-sm p-6 rounded-lg text-center glowing-border h-full flex flex-col justify-center items-center"> <h3 className="text-2xl md:text-3xl font-bold text-cyan-400">{value}</h3> <p className="text-gray-400 mt-2 text-sm">{label}</p> </div>); });
+    const Stats = () => { const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.3 } } }; const itemVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }; return (<section id="stats" className="py-20"> <motion.h2 className="text-3xl font-bold text-center text-white mb-2" initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5 }}>// Core Directives</motion.h2> <motion.div className="w-20 h-1 bg-cyan-400 mx-auto mb-12" initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5, delay: 0.2 }}></motion.div> <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8 max-w-5xl mx-auto" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }}> {STATS.map((stat) => (<motion.div key={stat.label} variants={itemVariants}><StatItem label={stat.label} value={stat.value} /></motion.div>))} </motion.div> </section>); };
+    const ServiceCard = React.memo(({ service }) => { return (<motion.div className="relative h-full"> <div className="bg-black/40 backdrop-blur-sm rounded-lg group transition-all duration-300 shadow-lg hover:shadow-cyan-500/30 glowing-border p-8 h-full"> <i className={`${service.icon} text-4xl text-cyan-400 mb-4`}></i> <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3> <p className="text-gray-400">{service.description}</p> </div> </motion.div>); });
+    const Services = () => { const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } }; const itemVariants = { hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0, transition: { type: 'spring' } } }; return (<section id="services" className="py-20"> <motion.h2 className="text-3xl font-bold text-center text-white mb-2" initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5 }}>// Service Protocols</motion.h2> <motion.div className="w-20 h-1 bg-cyan-400 mx-auto mb-12" initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5, delay: 0.2 }}></motion.div> <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}> {SERVICES.map((service) => (<motion.div key={service.title} variants={itemVariants} className="h-full"><ServiceCard service={service} /></motion.div>))} </motion.div> </section>); };
+    const Projects = () => { const [selectedProject, setSelectedProject] = useState(null); const [searchTerm, setSearchTerm] = useState(''); const [projects, setProjects] = useState([]); const [loading, setLoading] = useState(true); const [visibleCount, setVisibleCount] = useState(PROJECTS_PER_PAGE); useEffect(() => { fetch(PROJECTS_API_URL).then(response => response.json()).then(data => { setProjects(data); setLoading(false); }).catch(error => { console.error("Failed to load projects:", error); setLoading(false); }); }, []); const filteredProjects = useMemo(() => { if (!searchTerm) return projects; const lowercasedTerm = searchTerm.toLowerCase(); return projects.filter(p => p.title.toLowerCase().includes(lowercasedTerm)); }, [searchTerm, projects]); const visibleProjects = filteredProjects.slice(0, visibleCount); const handleLoadMore = () => { setVisibleCount(prevCount => prevCount + PROJECTS_PER_PAGE); }; const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }; return (<section id="projects" className="py-20"> <motion.h2 className="text-3xl font-bold text-center text-white mb-2" initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5 }}>// Concept Lab</motion.h2> <motion.div className="w-20 h-1 bg-cyan-400 mx-auto mb-12" initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5, delay: 0.2 }}></motion.div> <div className="mb-12 max-w-lg mx-auto px-4 sm:px-0"> <div className="relative"> <input type="text" placeholder='grep --title="AI Summarizer"' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full bg-black/30 glowing-border rounded-md py-3 px-5 text-cyan-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all duration-300" /> <i className="fas fa-search absolute right-5 top-1/2 -translate-y-1/2 text-gray-500"></i> </div> </div> {loading ? <p className="text-center text-gray-400 mt-12 font-mono">&gt; Loading concepts...</p> : (<motion.div key={searchTerm} className="flex gap-8 overflow-x-auto custom-scrollbar p-4 justify-center flex-wrap" variants={containerVariants} initial="hidden" animate="visible"> {visibleProjects.map((project) => (<ProjectCard key={project.title} project={project} onExecute={() => setSelectedProject(project)} />))} </motion.div>)} {!loading && filteredProjects.length === 0 && (<p className="text-center text-gray-400 mt-12 font-mono">-- No concepts found matching your query --</p>)} {!loading && visibleCount < filteredProjects.length && (<div className="text-center mt-12"> <motion.button onClick={handleLoadMore} className="bg-cyan-500/10 border border-cyan-500 text-cyan-400 font-bold py-3 px-8 rounded-md hover:bg-cyan-500/20 transition-all duration-300" whileHover={{ scale: 1.05, y: -2, boxShadow: '0 0 20px rgba(0, 246, 255, 0.5)' }} whileTap={{ scale: 0.95 }} > ./load_more </motion.button> </div>)} <AnimatePresence>{selectedProject && (<ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />)}</AnimatePresence> </section>); };
+    const CliInfoTerminal = () => { const [history, setHistory] = useState(['> Welcome to the ILoveTalk info terminal.', '> Type `help` for a list of available commands.']); const [input, setInput] = useState(''); const terminalEndRef = useRef(null); useEffect(() => { terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [history]); const HELP_MESSAGE = ['> Available commands:', '> `contact` - Display contact email.', '> `owner` - Show the name of the site owner.', '> `about` - Show a brief description.', '> `show --photo` - Highlights the owner\'s photo.', '> `clear` - Clear the terminal screen.', '> `socials` - List all social media links.']; const processCommand = (command) => { let newHistory = [...history, `$ ${command}`]; const cmd = command.trim().toLowerCase(); if (cmd === 'help') { newHistory.push(...HELP_MESSAGE); } else if (cmd === 'contact') { newHistory.push('> Email: devgrowr@gmail.com'); } else if (cmd === 'owner') { newHistory.push('> Owner: Mr Deepak (ILoveTalk)'); } else if (cmd === 'about') { newHistory.push(`> ${ABOUT_TEXT.substring(0, 150)}...`); } else if (cmd === 'show --photo') { newHistory.push('> Locating asset... Scrolling to #home.'); document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' }); } else if (cmd === 'socials') { newHistory.push('> Social Media Profiles:'); newHistory.push(`> GitHub: ${SOCIAL_LINKS.github}`); newHistory.push(`> LinkedIn: ${SOCIAL_LINKS.linkedin}`); newHistory.push(`> YouTube: ${SOCIAL_LINKS.youtube}`); newHistory.push(`> Instagram: ${SOCIAL_LINKS.instagram}`); } else if (cmd === 'clear') { newHistory = ['> Terminal cleared. Type `help` for commands.']; } else { newHistory.push(`> ERROR: Command not found: "${command}". Type 'help'.`); } setHistory(newHistory); }; const handleFormSubmit = (e) => { e.preventDefault(); if (input.trim() === '') return; processCommand(input); setInput(''); }; return (<div className="w-full max-w-4xl mx-auto bg-black/50 backdrop-blur-md glowing-border rounded-lg shadow-2xl shadow-cyan-500/10 font-mono"> <div className="bg-gray-800/50 p-3 rounded-t-lg flex items-center"><div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div><div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div><div className="w-3 h-3 rounded-full bg-green-500"></div><p className="ml-4 text-sm text-gray-400">/dev/tty.info</p></div> <div className="p-4 h-80 sm:h-96 overflow-y-auto custom-scrollbar text-sm"> {history.map((line, index) => (<p key={index} className="leading-relaxed whitespace-pre-wrap">{line}</p>))} <div ref={terminalEndRef}></div> </div> <form onSubmit={handleFormSubmit} className="border-t border-cyan-500/20 p-2"> <div className="flex items-center"> <span className="text-cyan-400 mr-2">$</span> <input type="text" value={input} onChange={e => setInput(e.target.value)} className="flex-1 bg-transparent border-none focus:ring-0 text-gray-200 focus:outline-none" placeholder="Type a command..." autoFocus /> </div> </form> </div>); };
+    const Contact = () => { return (<section id="contact" className="py-20"> <motion.h2 className="text-3xl font-bold text-center text-white mb-2" initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5 }}>// Info Terminal</motion.h2> <motion.div className="w-20 h-1 bg-cyan-400 mx-auto mb-12" initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.5, delay: 0.2 }}></motion.div> <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8 }}> <CliInfoTerminal /> </motion.div> </section>); };
+    const Footer = () => { return (<motion.footer className="bg-black/30 border-t border-cyan-500/20 glowing-border" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}> <div className="container mx-auto px-6 md:px-12 py-8 text-center text-gray-500"> <div className="flex justify-center space-x-6 mb-4"> <motion.a whileHover={{ scale: 1.2, y: -2, color: 'var(--primary-glow)' }} href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 text-xl" aria-label="GitHub"><i className="fab fa-github"></i></motion.a> <motion.a whileHover={{ scale: 1.2, y: -2, color: 'var(--primary-glow)' }} href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 text-xl" aria-label="LinkedIn"><i className="fab fa-linkedin"></i></motion.a> <motion.a whileHover={{ scale: 1.2, y: -2, color: 'var(--primary-glow)' }} href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 text-xl" aria-label="YouTube"><i className="fab fa-youtube"></i></motion.a> <motion.a whileHover={{ scale: 1.2, y: -2, color: 'var(--primary-glow)' }} href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 text-xl" aria-label="Instagram"><i className="fab fa-instagram"></i></motion.a> </div> <p className="text-sm font-mono">&copy; {new Date().getFullYear()} ILoveTalk. All Rights Reserved by Mr Deepak.</p> <p className="text-xs font-mono mt-2 text-cyan-400/50">session.end()</p> </div> </motion.footer>); };
+    const CodeProtection = () => { useEffect(() => { const handleKeyDown = (e) => { if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) || (e.ctrlKey && e.keyCode === 85) || (e.ctrlKey && e.keyCode === 83)) { e.preventDefault(); } }; window.addEventListener('keydown', handleKeyDown); return () => window.removeEventListener('keydown', handleKeyDown); }, []); return null; };
+    const SectionDivider = () => (<div className="text-center my-16 md:my-24" aria-hidden="true"> <span className="text-cyan-400/30 font-mono text-xl">&lt;!-- ================================= --&gt;</span> </div>);
+    const MatrixBackground = () => { const animationFrameId = useRef(null); useEffect(() => { const canvas = document.getElementById('matrix-bg'); if (!canvas || !(canvas instanceof HTMLCanvasElement)) return; const ctx = canvas.getContext('2d'); if (!ctx) return; let w = canvas.width = window.innerWidth; let h = canvas.height = window.innerHeight; let cols = Math.floor(w / 20) + 1; let ypos = Array(cols).fill(0); let animationRunning = true; let lastTime = 0; const fps = 15; const interval = 1000 / fps; const matrix = () => { ctx.fillStyle = 'rgba(1, 4, 9, 0.1)'; ctx.fillRect(0, 0, w, h); ctx.fillStyle = '#00f6ff'; ctx.font = '15pt monospace'; ypos.forEach((y, ind) => { const text = String.fromCharCode(Math.random() * 128); const x = ind * 20; ctx.fillText(text, x, y); if (y > 100 + Math.random() * 10000) ypos[ind] = 0; else ypos[ind] = y + 20; }); }; const throttledMatrix = (timestamp) => { if (animationRunning) { animationFrameId.current = requestAnimationFrame(throttledMatrix); if (timestamp - lastTime > interval) { matrix(); lastTime = timestamp; } } }; throttledMatrix(0); const handleResize = () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; cols = Math.floor(w / 20) + 1; ypos = Array(cols).fill(0); }; const handleVisibilityChange = () => { if (document.hidden) { animationRunning = false; if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current); } else { animationRunning = true; lastTime = performance.now(); throttledMatrix(lastTime); } }; window.addEventListener('resize', handleResize); document.addEventListener('visibilitychange', handleVisibilityChange); return () => { animationRunning = false; if (animationFrameId.current) cancelAnimationFrame(animationFrameId.current); window.removeEventListener('resize', handleResize); document.removeEventListener('visibilitychange', handleVisibilityChange); }; }, []); return null; };
+    const ScrollToTop = () => { const [isVisible, setIsVisible] = useState(false); useEffect(() => { const toggleVisibility = () => { if (window.pageYOffset > 300) { setIsVisible(true); } else { setIsVisible(false); } }; window.addEventListener('scroll', toggleVisibility); return () => window.removeEventListener('scroll', toggleVisibility); }, []); const scrollToTop = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); }; return (<AnimatePresence> {isVisible && (<motion.button onClick={scrollToTop} className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-cyan-400 glowing-border shadow-lg shadow-cyan-500/20" aria-label="Scroll to top" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }} whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(0, 246, 255, 0.5)' }} whileTap={{ scale: 0.9 }}> <i className="fas fa-chevron-up text-xl"></i> </motion.button>)} </AnimatePresence>); };
+
+    const App = () => {
+      useEffect(() => {
+        if ('scrollRestoration' in window.history) {
+          window.history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+        const handleLoad = () => {
+          const preloader = document.getElementById('preloader');
+          if (preloader) {
+            preloader.classList.add('loaded');
+          }
+        };
+        if (document.readyState === 'complete') {
+          handleLoad();
+        } else {
+          window.addEventListener('load', handleLoad, { once: true });
+        }
+        return () => window.removeEventListener('load', handleLoad);
+      }, []);
+
+      return (
+        <div className="min-h-screen overflow-x-hidden">
+          <CodeProtection />
+          <Header />
+          <main className="container mx-auto px-6 md:px-12 relative z-10">
+            <Hero />
+            <About />
+            <SectionDivider />
+            <Stats />
+            <SectionDivider />
+            <Services />
+            <SectionDivider />
+            <Projects />
+            <SectionDivider />
+            <Contact />
+          </main>
+          <Footer />
+          <ScrollToTop />
+        </div>
+      );
+    };
+
+    // --- RENDER ---
+    const rootElement = document.getElementById('root');
+    if (!rootElement) throw new Error("Could not find root element to mount to");
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(
+      <React.StrictMode>
+        <MatrixBackground />
+        <App />
+      </React.StrictMode>
+    );
+  </script>
+</body>
+
+</html>
