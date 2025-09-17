@@ -51,26 +51,6 @@
         ];
         const ALL_LESSONS = COURSE_DATA.flatMap(module => module.lessons);
 
-        // --- COMPONENTS ---
-        const AdBlockerOverlay = () => (
-            <div className="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 p-4">
-                <div className="bg-white p-8 md:p-12 rounded-lg shadow-2xl border border-gray-300 max-w-lg text-center mx-auto">
-                    <svg className="w-16 h-16 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    <h2 className="text-2xl font-bold text-gray-800">Ad Blocker Detected</h2>
-                    <p className="text-gray-600 mt-4">To access this free course, please disable your ad blocker for this site.</p>
-                    <p className="text-gray-600 mt-2">Ads help us keep this content free for everyone. We promise they won't be intrusive.</p>
-                    <div className="mt-6 text-sm bg-gray-100 p-3 rounded-md text-left text-gray-500">
-                        <strong>How to disable:</strong>
-                        <ol className="list-decimal list-inside mt-1">
-                            <li>Find the ad blocker icon in your browser's toolbar.</li>
-                            <li>Click it and choose "Pause on this site" or "Don't run on pages on this domain".</li>
-                            <li>Refresh the page.</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        );
-
         const CopyButton = ({ textToCopy }) => {
             const [isCopied, setIsCopied] = useState(false);
             const copyToClipboard = () => {
@@ -227,4 +207,5 @@
 
     </script>
 </body>
+
 </html>
