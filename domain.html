@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Year Free | 3 Years Free Domain Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'fade-in-down': 'fadeInDown 0.8s ease-out forwards',
+              'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
+              'subtle-bob': 'subtleBob 3s ease-in-out infinite'
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeInDown: {
+                '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+               slideInLeft: {
+                '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' },
+              },
+              subtleBob: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .page { display: none; }
+      .page.active { display: block; }
+      .nav-link.active {
+        --tw-bg-opacity: 1;
+        background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity));
+      }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    
+    <!-- HEADER -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-md animate-fade-in-down">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="nav-link-logo flex items-center gap-2 text-xl font-bold text-indigo-600">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor"></path>
+                        <path d="M12.5 7v5.5l4.5 2.5-1 1.73-5.5-3.14V7h2z" fill="currentColor"></path>
+                    </svg>
+                    <span>year free</span>
+                </a>
+
+                <nav class="hidden md:flex items-center space-x-2">
+                    <a href="#home" data-navigo class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-slate-700 hover:bg-indigo-100 hover:text-indigo-600">Home</a>
+                    <a href="#domains" data-navigo class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-slate-700 hover:bg-indigo-100 hover:text-indigo-600">Domains</a>
+                    <a href="#pricing" data-navigo class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-slate-700 hover:bg-indigo-100 hover:text-indigo-600">Pricing</a>
+                    <a href="#about" data-navigo class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-slate-700 hover:bg-indigo-100 hover:text-indigo-600">About Us</a>
+                    <a href="#contact" data-navigo class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-slate-700 hover:bg-indigo-100 hover:text-indigo-600">Contact</a>
+                </nav>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-slate-700 hover:text-indigo-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden mt-4 animate-fade-in-down">
+                <nav class="flex flex-col space-y-2">
+                    <a href="#home" data-navigo class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-slate-700 hover:bg-indigo-100 hover:text-indigo-600">Home</a>
+                    <a href="#domains" data-navigo class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-slate-700 hover:bg-indigo-100 hover:text-indigo-600">Domains</a>
+                    <a href="#pricing" data-navigo class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-slate-700 hover:bg-indigo-100 hover:text-indigo-600">Pricing</a>
+                    <a href="#about" data-navigo class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-slate-700 hover:bg-indigo-100 hover:text-indigo-600">About Us</a>
+                    <a href="#contact" data-navigo class="nav-link px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-slate-700 hover:bg-indigo-100 hover:text-indigo-600">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main class="flex-grow">
+        <!-- HOME PAGE -->
+        <section id="home-page" class="page">
+            <div class="overflow-x-hidden">
+                <div class="relative bg-gradient-to-br from-indigo-50 via-white to-purple-50 pt-20 pb-32 text-center">
+                     <div class="absolute top-0 left-0 w-full h-full bg-grid-slate-200/[0.2] [mask-image:linear-gradient(to_bottom,white_0%,transparent_100%)]"></div>
+                    <div class="container mx-auto px-6 relative">
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4 animate-fade-in-up">
+                            Your Dream Domain, <span class="text-indigo-600">Free for 3 Years</span>.
+                        </h1>
+                        <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+                            No hidden fees, no credit card required. Just find your name and get started on your online journey today.
+                        </p>
+                        <form id="home-search-form" class="w-full max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s;">
+                            <div class="flex items-center bg-white rounded-full shadow-lg overflow-hidden p-2">
+                                <input type="text" name="domain-search" placeholder="Find your perfect domain name..." class="w-full px-6 py-3 text-lg text-slate-700 placeholder-slate-400 focus:outline-none bg-transparent">
+                                <button type="submit" class="bg-indigo-600 text-white rounded-full px-6 py-3 font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-300 transform hover:scale-105">
+                                    Search
+                                </button>
+                            </div>
+                             <p class="text-center mt-4 text-slate-500 text-sm">.com, .net, .org, .in, and more!</p>
+                        </form>
+                    </div>
+                </div>
+                
+                <div id="container-ad-home-page" class="ad-container flex justify-center my-8"></div>
+    
+                <section class="py-20 bg-white">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-12">
+                             <h2 class="text-3xl md:text-4xl font-bold text-slate-800">Why Choose Year Free?</h2>
+                            <p class="text-slate-500 mt-2">Everything you need to get online, without the initial cost.</p>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="bg-slate-50 p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in-up" style="animation-delay: 0.3s;">
+                                <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 text-indigo-600 mb-4">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01"></path><path d="M12 18c-1.657 0-3-.895-3-2s1.343-2 3-2 3-.895 3-2-1.343-2-3-2m0 8v1m0-1v-.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Absolutely Free for 3 Years</h3>
+                                <p class="text-slate-600">Secure your domain for three full years with zero upfront cost. After that, it's just ₹99 per year.</p>
+                            </div>
+                            <div class="bg-slate-50 p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in-up" style="animation-delay: 0.5s;">
+                                 <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-600 mb-4">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Instant Registration</h3>
+                                <p class="text-slate-600">No waiting, no lengthy processes. Your domain is registered the moment you claim it.</p>
+                            </div>
+                            <div class="bg-slate-50 p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 animate-fade-in-up" style="animation-delay: 0.7s;">
+                                 <div class="flex items-center justify-center h-16 w-16 rounded-full bg-purple-100 text-purple-600 mb-4">
+                                   <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Simple & Secure</h3>
+                                <p class="text-slate-600">We provide a straightforward and secure platform to manage your new domain.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="py-20 bg-slate-50">
+                    <div class="container mx-auto px-6">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div class="animate-slide-in-left">
+                                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Get Your Free Domain in 3 Easy Steps</h2>
+                                <ul class="space-y-6">
+                                    <li class="flex items-start">
+                                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full font-bold mr-4">1</span>
+                                        <p class="text-slate-600 flex-1"><strong>Search:</strong> Use our search bar to find an available domain name that fits your brand.</p>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full font-bold mr-4">2</span>
+                                        <p class="text-slate-600 flex-1"><strong>Select:</strong> Choose your preferred domain from the list of available options.</p>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-full font-bold mr-4">3</span>
+                                        <p class="text-slate-600 flex-1"><strong>Register:</strong> Click "Register" and it's yours instantly for 3 years, completely free!</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="flex justify-center animate-subtle-bob">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-48 w-48 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h1a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.884 10.219l.044.025a2 2 0 001.99 0l.044-.025M11 15.75l.01.015a.015.015 0 01-1.254.002L9.75 15.75M13.25 10.5l-2.5 2.5m2.5-2.5l2.5 2.5M10.5 13.25l2.5-2.5"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- DOMAINS PAGE -->
+        <section id="domains-page" class="page">
+             <div class="bg-slate-50 min-h-[calc(100vh-200px)] py-12">
+                <div class="container mx-auto px-6">
+                    <div class="max-w-3xl mx-auto mb-12">
+                       <h1 class="text-3xl md:text-4xl font-bold text-center text-slate-800 mb-6 animate-fade-in-down">Domain Search Results</h1>
+                       <form id="domains-search-form" class="w-full max-w-2xl mx-auto">
+                            <div class="flex items-center bg-white rounded-full shadow-lg overflow-hidden p-2">
+                                <input type="text" name="domain-search" placeholder="Find your perfect domain name..." class="w-full px-6 py-3 text-lg text-slate-700 placeholder-slate-400 focus:outline-none bg-transparent">
+                                <button type="submit" class="bg-indigo-600 text-white rounded-full px-6 py-3 font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-300 transform hover:scale-105">
+                                    Search
+                                </button>
+                            </div>
+                             <p class="text-center mt-4 text-slate-500 text-sm">.com, .net, .org, .in, and more!</p>
+                        </form>
+                    </div>
+                    
+                    <div id="iframe-ad-domains-page" class="ad-container flex justify-center my-8"></div>
+    
+                    <div id="domains-loading" class="hidden flex justify-center items-center py-10">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+                        <p class="ml-4 text-slate-600">Searching for domains...</p>
+                    </div>
+                    
+                    <div id="domains-results-container" class="space-y-4 max-w-3xl mx-auto animate-fade-in-up">
+                        <!-- Results will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING PAGE -->
+        <section id="pricing-page" class="page">
+             <div class="bg-white py-20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center max-w-3xl mx-auto animate-fade-in-down">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900">Simple, Transparent Pricing</h1>
+                        <p class="mt-4 text-lg text-slate-600">No surprises, no hidden fees. Just one simple plan to get you online.</p>
+                    </div>
+    
+                    <div class="flex justify-center mt-12">
+                        <div class="w-full max-w-md bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-8 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300 animate-fade-in-up">
+                            <h2 class="text-2xl font-bold">Standard Plan</h2>
+                            <p class="text-indigo-200 mt-2">Everything you need.</p>
+                            
+                            <div class="mt-6">
+                                <span class="text-5xl font-extrabold">Free</span>
+                                <span class="text-xl font-medium text-indigo-200"> / for 3 Years</span>
+                            </div>
+                            <p class="mt-2 text-indigo-200">Then just ₹99 per year.</p>
+    
+                            <ul class="mt-8 space-y-4">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-indigo-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <span class="ml-3">One Domain Registration</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-indigo-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <span class="ml-3">Easy Management Panel</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-indigo-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <span class="ml-3">DNS Control</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 text-indigo-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    <span class="ml-3">24/7 Customer Support</span>
+                                </li>
+                            </ul>
+    
+                            <a href="#home" class="block w-full text-center bg-white text-indigo-600 font-bold py-3 px-6 rounded-lg mt-8 hover:bg-slate-100 transition-colors duration-300">
+                                Find Your Free Domain
+                            </a>
+                        </div>
+                    </div>
+    
+                    <div id="container-ad-pricing-page" class="ad-container flex justify-center my-8"></div>
+    
+                    <div class="text-center mt-16 max-w-2xl mx-auto">
+                        <h3 class="text-2xl font-bold text-slate-800">Frequently Asked Questions</h3>
+                        <div class="mt-6 text-left space-y-4">
+                            <details class="p-4 border rounded-lg">
+                                <summary class="font-semibold cursor-pointer">Is it really free?</summary>
+                                <p class="mt-2 text-slate-600">Yes! Your chosen domain is completely free for the first three years. No credit card is required to register. After three years, you can choose to renew it for just ₹99 per year.</p>
+                            </details>
+                            <details class="p-4 border rounded-lg">
+                                <summary class="font-semibold cursor-pointer">What TLDs are available?</summary>
+                                <p class="mt-2 text-slate-600">We offer a wide range of popular TLDs including .com, .net, .org, .in, .xyz, and more. Search for your desired name to see available options.</p>
+                            </details>
+                            <details class="p-4 border rounded-lg">
+                                <summary class="font-semibold cursor-pointer">Can I transfer my domain?</summary>
+                                <p class="mt-2 text-slate-600">Of course. You have full ownership and control over your domain and can transfer it to another registrar at any time.</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT PAGE -->
+        <section id="about-page" class="page">
+            <div class="bg-slate-50 py-20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center animate-fade-in-down">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900">Making the Web Accessible to Everyone</h1>
+                        <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">Our mission is to remove the initial barriers to getting online.</p>
+                    </div>
+    
+                    <div class="grid md:grid-cols-2 gap-16 items-center mt-16">
+                        <div class="animate-slide-in-left">
+                            <img src="https://picsum.photos/600/400?grayscale" alt="Diverse team working together" class="rounded-xl shadow-lg w-full">
+                        </div>
+                        <div class="animate-fade-in-up" style="animation-delay: 0.2s;">
+                            <h2 class="text-3xl font-bold text-slate-800 mb-4">Who We Are</h2>
+                            <p class="text-slate-600 mb-4">
+                                Year Free was founded on a simple principle: everyone deserves a space on the internet. We believe that the cost of a domain name shouldn't stop a great idea from coming to life. Whether you're a student, an entrepreneur, an artist, or just someone with a passion to share, we're here to help you take that first step.
+                            </p>
+                            <p class="text-slate-600">
+                                By offering domains for free for the first three years, we hope to empower a new generation of creators and builders to make their mark on the web.
+                            </p>
+                        </div>
+                    </div>
+    
+                     <div class="mt-20 text-center">
+                        <h2 class="text-3xl font-bold text-slate-800 mb-8">Our Core Values</h2>
+                        <div class="grid sm:grid-cols-3 gap-8">
+                            <div class="p-6 bg-white rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold text-indigo-600">Simplicity</h3>
+                                <p class="mt-2 text-slate-600">No jargon, no complicated processes. Just a simple, fast way to get your domain.</p>
+                            </div>
+                            <div class="p-6 bg-white rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold text-indigo-600">Transparency</h3>
+                                <p class="mt-2 text-slate-600">We believe in clear, honest pricing. What you see is what you get.</p>
+                            </div>
+                            <div class="p-6 bg-white rounded-lg shadow-md">
+                                <h3 class="text-xl font-semibold text-indigo-600">Empowerment</h3>
+                                <p class="mt-2 text-slate-600">We're here to give you the tools you need to succeed online, starting with a free domain.</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="mt-20 text-center bg-indigo-600 text-white p-12 rounded-xl">
+                        <h2 class="text-3xl font-bold">Ready to Start Your Journey?</h2>
+                        <p class="mt-2 max-w-2xl mx-auto">Find your perfect domain name today and join the thousands of others building their dreams online.</p>
+                        <a href="#home" class="inline-block bg-white text-indigo-600 font-bold py-3 px-8 rounded-lg mt-6 hover:bg-slate-100 transition-colors">
+                            Get Your Free Domain
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="contact-page" class="page">
+            <div class="bg-white py-20">
+                <div class="container mx-auto px-6">
+                    <div class="text-center animate-fade-in-down">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900">Get in Touch</h1>
+                        <p class="mt-4 text-lg text-slate-600">We'd love to hear from you! Whether you have a question or just want to say hi, feel free to reach out.</p>
+                    </div>
+    
+                    <div class="mt-16 max-w-4xl mx-auto grid md:grid-cols-2 gap-12 bg-slate-50 p-8 rounded-xl shadow-lg">
+                        <div class="animate-slide-in-left">
+                            <h2 class="text-2xl font-bold text-slate-800 mb-4">Contact Information</h2>
+                            <p class="text-slate-600 mb-6">You can reach us through the following channels:</p>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    <span class="ml-3 text-slate-700">support@yearfree.example.com</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    <span class="ml-3 text-slate-700">+91 123-456-7890</span>
+                                </div>
+                                <div class="flex items-center">
+                                     <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    <span class="ml-3 text-slate-700">Mumbai, India (Fictional Office)</span>
+                                </div>
+                            </div>
+                        </div>
+                         <div id="contact-form-container" class="animate-fade-in-up">
+                            <form id="contact-form" class="space-y-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-slate-700">Full Name</label>
+                                    <input type="text" id="name" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-slate-700">Email Address</label>
+                                    <input type="email" id="email" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-slate-700">Message</label>
+                                    <textarea id="message" rows="4" required class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-colors">
+                                        Send Message
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                         <div id="contact-success-message" class="hidden bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-md h-full flex-col justify-center items-center">
+                            <h3 class="text-xl font-bold">Thank You!</h3>
+                            <p>Your message has been sent successfully. We'll get back to you shortly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONFIRMATION PAGE -->
+        <section id="confirmation-page" class="page">
+            <div class="bg-gradient-to-br from-green-50 to-teal-50 py-20">
+                <div class="container mx-auto px-6 text-center">
+                    <div class="max-w-2xl mx-auto bg-white p-10 rounded-xl shadow-lg animate-fade-in-up">
+                         <div class="flex justify-center mb-6">
+                            <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center animate-bounce">
+                               <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                        </div>
+                        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900">Congratulations!</h1>
+                        <p class="mt-4 text-lg text-slate-600">
+                            You have successfully registered the domain:
+                        </p>
+                        <p id="confirmed-domain-name" class="my-4 text-2xl font-bold text-indigo-600 bg-indigo-50 px-4 py-2 rounded-lg inline-block">
+                            <!-- Domain name here -->
+                        </p>
+                        <p class="text-slate-600">
+                            It's yours for the next <strong>3 years, completely free</strong> of charge.
+                        </p>
+                        <div class="mt-8 border-t pt-6 text-left">
+                            <h2 class="text-xl font-bold text-slate-800 mb-4">What's next?</h2>
+                            <p class="text-slate-600 mb-2">You now have full control over your domain. You can typically:</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                <li>Set up custom email addresses.</li>
+                                <li>Point your domain to a hosting provider.</li>
+                                <li>Configure DNS settings.</li>
+                            </ul>
+                             <p class="mt-4 text-slate-500 text-sm">(In a real application, you would receive an email with instructions on how to manage your domain.)</p>
+                        </div>
+                        <a href="#home" class="inline-block mt-8 bg-indigo-600 text-white py-3 px-8 rounded-lg font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-colors">
+                            Register Another Domain
+                        </a>
+                    </div>
+                    <div id="container-ad-confirmation-page" class="ad-container flex justify-center my-8"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- FOOTER -->
+    <footer class="bg-slate-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div id="iframe-ad-footer" class="ad-container flex justify-center py-4"></div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">year free</h3>
+                    <p class="text-slate-400">Your dream domain, free for 3 years. Simple, fast, and reliable.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-slate-200 mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#domains" class="text-slate-400 hover:text-indigo-400 transition-colors">Find a Domain</a></li>
+                        <li><a href="#pricing" class="text-slate-400 hover:text-indigo-400 transition-colors">Pricing</a></li>
+                        <li><a href="#about" class="text-slate-400 hover:text-indigo-400 transition-colors">About Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-slate-200 mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#contact" class="text-slate-400 hover:text-indigo-400 transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-indigo-400 transition-colors">FAQs</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-indigo-400 transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-slate-200 mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-indigo-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-indigo-400 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-slate-700 pt-8 text-center text-slate-500 text-sm">
+                &copy; 2024 Year Free. All rights reserved. A fictional project for demonstration.
+            </div>
+        </div>
+    </footer>
+    
+    <script type='text/javascript' src='//pl27536513.revenuecpmgate.com/0e/ba/e1/0ebae14a2c4fd17023b876ff5b6e280b.js'></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const initIframeAd = (containerId) => {
+             const adContainer = document.getElementById(containerId);
+             if (adContainer && !adContainer.hasChildNodes()) {
+                 const scriptConfig = document.createElement('script');
+                 scriptConfig.type = 'text/javascript';
+                 scriptConfig.innerHTML = `
+                    atOptions = {
+                        'key' : 'a2035e3acaba5d13e21b336128b252fa',
+                        'format' : 'iframe',
+                        'height' : 60,
+                        'width' : 468,
+                        'params' : {}
+                    };
+                `;
+                adContainer.appendChild(scriptConfig);
+
+                const scriptSrc = document.createElement('script');
+                scriptSrc.type = 'text/javascript';
+                scriptSrc.src = "//www.highperformanceformat.com/a2035e3acaba5d13e21b336128b252fa/invoke.js";
+                adContainer.appendChild(scriptSrc);
+            }
+        };
+        
+        initIframeAd('iframe-ad-footer');
+
+        // --- ROUTING LOGIC ---
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const showPage = (pageId, params) => {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.add('active');
+                window.scrollTo(0, 0);
+                
+                // Activate nav link
+                const currentHash = `#${pageId.replace('-page', '')}`;
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === currentHash);
+                });
+
+                // Page-specific logic
+                if (pageId === 'domains-page') {
+                    handleDomainsPageLoad(params);
+                    initIframeAd('iframe-ad-domains-page');
+                } else if (pageId === 'confirmation-page') {
+                    handleConfirmationPageLoad(params);
+                    initContainerAd('container-ad-confirmation-page');
+                } else if (pageId === 'home-page') {
+                    initContainerAd('container-ad-home-page');
+                } else if (pageId === 'pricing-page') {
+                    initContainerAd('container-ad-pricing-page');
+                }
+            }
+        };
+
+        const parseHash = (hash) => {
+            const [path, query] = hash.substring(1).split('?');
+            const pageId = (path || 'home') + '-page';
+            const params = new URLSearchParams(query || '');
+            return { pageId, params };
+        };
+
+        const handleRouteChange = () => {
+            const { pageId, params } = parseHash(window.location.hash);
+            showPage(pageId, params);
+        };
+
+        window.addEventListener('hashchange', handleRouteChange);
+        
+        // Initial load
+        handleRouteChange();
+
+        // --- PAGE-SPECIFIC LOGIC ---
+
+        // Domain Search (from any form)
+        const handleSearchSubmit = (e) => {
+            e.preventDefault();
+            const input = e.target.querySelector('input[name="domain-search"]');
+            const searchTerm = input.value.trim();
+            if (searchTerm) {
+                window.location.hash = `#domains?term=${encodeURIComponent(searchTerm)}`;
+            }
+        };
+        
+        document.getElementById('home-search-form').addEventListener('submit', handleSearchSubmit);
+        document.getElementById('domains-search-form').addEventListener('submit', handleSearchSubmit);
+
+        // Domains Page
+        const handleDomainsPageLoad = (params) => {
+            const term = params.get('term');
+            const searchInput = document.querySelector('#domains-search-form input');
+            const resultsContainer = document.getElementById('domains-results-container');
+            const loadingIndicator = document.getElementById('domains-loading');
+
+            searchInput.value = term || '';
+            resultsContainer.innerHTML = '';
+
+            if (term) {
+                loadingIndicator.style.display = 'flex';
+                setTimeout(() => {
+                    const tlds = ['.com', '.net', '.org', '.in', '.xyz', '.co'];
+                    const generatedResults = tlds.map(tld => {
+                        const isAvailable = Math.random() > 0.3;
+                        return {
+                            name: `${term.replace(/\s+/g, '').toLowerCase()}${tld}`,
+                            status: isAvailable ? 'available' : 'taken',
+                            price: 'Free',
+                            term: 'for 3 years'
+                        };
+                    });
+                    
+                    loadingIndicator.style.display = 'none';
+                    resultsContainer.innerHTML = generatedResults.map(result => `
+                        <div class="bg-white p-6 rounded-lg shadow-md flex flex-col sm:flex-row items-center justify-between gap-4 transition-transform transform hover:scale-105 duration-300">
+                            <div>
+                                <p class="text-xl font-semibold text-slate-800">${result.name}</p>
+                                <p class="text-sm text-slate-500">${result.term}</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="text-lg font-bold text-indigo-600">${result.price}</span>
+                                ${result.status === 'available' ? 
+                                    `<a href="#confirmation?domain=${result.name}" class="register-btn bg-green-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-600 transition-colors duration-300">Register</a>` : 
+                                    `<span class="text-red-500 font-semibold px-6 py-2">Taken</span>`
+                                }
+                            </div>
+                        </div>
+                    `).join('');
+                }, 1500);
+            }
+        };
+        
+        // Confirmation Page
+        const handleConfirmationPageLoad = (params) => {
+            const domain = params.get('domain');
+            if (domain) {
+                document.getElementById('confirmed-domain-name').textContent = domain;
+            } else {
+                window.location.hash = '#home'; // Redirect if no domain
+            }
+        };
+        
+        // Contact Page Form
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+             e.preventDefault();
+             document.getElementById('contact-form-container').style.display = 'none';
+             const successMessage = document.getElementById('contact-success-message');
+             successMessage.style.display = 'flex';
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = mobileMenuButton.querySelector('svg path');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('hidden');
+            if (!isOpen) {
+                 mobileMenuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // Close icon
+            } else {
+                 mobileMenuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'); // Burger icon
+            }
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            }
+        });
+    });
+    </script>
+
+</body>
+</html>
